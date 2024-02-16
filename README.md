@@ -1,5 +1,11 @@
-# example-community-template
+# Variable template
 
-The example-community-template project is an example of a Google Tag Manager [Community Template Gallery template repository](https://support.google.com/tagmanager/answer/9454109) repository that can be used as a template to generate new community template repositories.
+The `gtm-community-template-undefinedable` is a variable template of Google Tag Manager. It returns `undefined` if a property is absent in the latest layer in dataLayer.
 
-To submit your own template, see the [detailed instructions on how to submit templates to the Community Template Gallery](https://developers.google.com/tag-manager/templates/gallery).
+## Why
+Imagine that if a variable in pushed layer:
+
+- first time: `dataLayer.push({ event: 'create_order', order_amount: 300, delivery_fee: 80 })`
+- second time: `dataLayer.push({ event: 'create_order', order_amount: 300 })`
+
+It returns `80` for variable `delivery_fee` if it's from built-in Data Layer Variable. But for me, it should be `undefined` instead of `80` implicitly as it's absent in the pushed object.
